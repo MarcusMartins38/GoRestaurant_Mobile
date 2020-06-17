@@ -60,6 +60,13 @@ const Dashboard: React.FC = () => {
   useEffect(() => {
     async function loadFoods(): Promise<void> {
       // Load Foods from API
+      const response = await api.get<Food[]>('foods');
+
+      const foodFormatted = response.data.map(food => {
+        return { ...food, formattedPrice: formatValue(food.price) };
+      });
+
+      setFoods(foodFormatted);
     }
 
     loadFoods();
@@ -68,6 +75,10 @@ const Dashboard: React.FC = () => {
   useEffect(() => {
     async function loadCategories(): Promise<void> {
       // Load categories from API
+
+      const response = await api.get<Category[]>('categories');
+
+      setCategories(response.data);
     }
 
     loadCategories();
