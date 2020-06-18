@@ -35,12 +35,12 @@ const Orders: React.FC = () => {
       // Load orders from API
       const response = await api.get('orders');
 
-      const formatedValues = response.data.map((food: Food) => ({
+      const formattedData = response.data.map((food: Food) => ({
         ...food,
         formattedValue: formatValue(food.price),
       }));
 
-      setOrders(formatedValues);
+      setOrders(formattedData);
     }
 
     loadOrders();

@@ -54,10 +54,6 @@ const Dashboard: React.FC = () => {
   const navigation = useNavigation();
 
   async function handleNavigate(id: number): Promise<void> {
-    // Navigate do ProductDetails page
-
-    // const response = await api.get(`foods/${id}`);
-
     navigation.navigate('FoodDetails', { id });
   }
 
@@ -65,7 +61,7 @@ const Dashboard: React.FC = () => {
     async function loadFoods(): Promise<void> {
       const response = await api.get<Food[]>('foods', {
         params: {
-          category: selectedCategory,
+          category_like: selectedCategory,
           name_like: searchValue,
         },
       });
